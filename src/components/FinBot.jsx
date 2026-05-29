@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import harryBot from '../assets/harry-bot.png'
 
 const features = [
@@ -32,7 +33,44 @@ const chat = [
   { from: 'bot',  text: 'Отлично! 💰 По методу 20% советую отложить 16 000 ₽ в накопления' },
 ]
 
+function ComingSoonModal({ onClose }) {
+  return (
+    <div className="csm-overlay" onClick={onClose}>
+      <div className="csm-box" onClick={e => e.stopPropagation()}>
+        <button className="csm-close" onClick={onClose}>✕</button>
+
+        <div className="csm-badge">⏳ Скоро</div>
+
+        <img src={harryBot} alt="Гарри" className="csm-avatar" />
+
+        <h2 className="csm-title">Гарри скоро откроет двери</h2>
+        <p className="csm-sub">AI-финансовый помощник в Telegram</p>
+
+        <p className="csm-text">
+          Мы заканчиваем настройку Гарри и готовим для вас лучший опыт управления личными финансами.
+          Бот будет уметь вести бюджет семьи, строить умные отчёты, работать с несколькими валютами
+          и давать персональные рекомендации — без таблиц и стресса.
+        </p>
+
+        <div className="csm-features">
+          <div className="csm-feat">🤖 AI-категоризация трат</div>
+          <div className="csm-feat">📊 Умные ежемесячные отчёты</div>
+          <div className="csm-feat">👨‍👩‍👧 Семейный бюджет</div>
+          <div className="csm-feat">🌍 Мультивалютность</div>
+        </div>
+
+        <p className="csm-notify">Хотите узнать первыми о запуске?</p>
+        <a href="#contact" className="csm-btn" onClick={onClose}>
+          Оставить заявку →
+        </a>
+      </div>
+    </div>
+  )
+}
+
 export default function FinBot() {
+  const [showModal, setShowModal] = useState(false)
+
   return (
     <section id="finbot" className="finbot">
       <div className="section-inner">
@@ -56,14 +94,9 @@ export default function FinBot() {
               без таблиц и стресса. Просто пишите расходы в чат — он сделает
               всё остальное сам.
             </p>
-            <a
-              href="https://t.me/Harry_AI_fin_bot"
-              className="finbot-cta"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <button className="finbot-cta" onClick={() => setShowModal(true)}>
               Открыть в Telegram →
-            </a>
+            </button>
           </div>
 
           <div className="finbot-header-right">
@@ -124,14 +157,12 @@ export default function FinBot() {
             <span>Используйте бот самостоятельно или вместе с персональным сопровождением.</span>
           </p>
           <div className="finbot-bottom-btns">
-            <a
-              href="https://t.me/Harry_AI_fin_bot"
+            <button
               className="btn-primary finbot-btn-tg"
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={() => setShowModal(true)}
             >
               Попробовать бесплатно
-            </a>
+            </button>
             <a href="#contact" className="btn-outline finbot-btn-consult">
               Записаться к Марине
             </a>
@@ -139,6 +170,8 @@ export default function FinBot() {
         </div>
 
       </div>
+
+      {showModal && <ComingSoonModal onClose={() => setShowModal(false)} />}
     </section>
   )
 }
