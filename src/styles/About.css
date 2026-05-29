@@ -1,0 +1,125 @@
+.about {
+  background: var(--dark);
+  padding: 60px 5%;
+}
+
+.about .section-title { color: var(--white); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 80px;
+  align-items: start;
+}
+
+.about-image {
+  position: relative;
+}
+
+.about-right {
+  display: flex;
+  flex-direction: column;
+  height: 587px;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text .divider {
+  margin: 14px 0 12px;
+}
+
+.about-stats {
+  margin-top: auto;
+}
+
+.about-img {
+  width: 100%;
+  height: 500px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 32px 100px 32px 100px;
+  box-shadow: 0 20px 80px rgba(0, 0, 0, 0.45);
+}
+
+.about-img-accent {
+  position: absolute;
+  top: -16px; left: -16px;
+  right: 16px; bottom: 16px;
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: 40px 108px 40px 108px;
+  pointer-events: none;
+}
+
+.about-text p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 7px;
+}
+
+.about-text p strong {
+  color: var(--gold-light);
+  font-weight: 400;
+}
+
+.about-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 7px 0;
+}
+
+.about-list li {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  line-height: 1.4;
+  margin-bottom: 5px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.about-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 0;
+}
+
+.stat-item {
+  border-top: 1px solid rgba(201, 169, 110, 0.2);
+  padding-top: 20px;
+}
+
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--gold-light);
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.06em;
+  margin-top: 6px;
+}
+
+@media (max-width: 1024px) {
+  .about-grid { grid-template-columns: 1fr; }
+  .about-img { height: 340px; }
+}
+
+@media (max-width: 768px) {
+  .about { padding: 60px 5%; }
+  .about-img { height: 380px; }
+}
