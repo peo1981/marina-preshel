@@ -1,0 +1,176 @@
+/* ── Language Switcher (desktop) ────────── */
+
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-right: 12px;
+}
+
+.lang-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(44, 36, 32, 0.4);
+  padding: 4px 7px;
+  border-radius: 6px;
+  transition: all 0.2s;
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  color: var(--text-mid);
+  background: rgba(201, 169, 110, 0.08);
+}
+
+.lang-btn.active {
+  color: var(--gold-dark);
+  background: rgba(201, 169, 110, 0.12);
+}
+
+@media (max-width: 768px) {
+  .lang-switcher { display: none; }
+}
+
+/* ── Language Switcher (mobile menu) ────── */
+
+.mob-lang {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mob-lang-btn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Jost', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: rgba(245, 240, 234, 0.45);
+  padding: 7px 16px;
+  transition: all 0.2s;
+}
+
+.mob-lang-btn.active {
+  border-color: rgba(201, 169, 110, 0.5);
+  color: #c9a96e;
+  background: rgba(201, 169, 110, 0.08);
+}
+
+/* ── RTL: font overrides for Hebrew ─────── */
+
+html[lang="he"] body {
+  font-family: 'Heebo', sans-serif;
+}
+
+html[lang="he"] .section-title,
+html[lang="he"] .harry-modal-title,
+html[lang="he"] .finbot-card-title,
+html[lang="he"] .service-name,
+html[lang="he"] .mob-menu a {
+  font-family: 'Heebo', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+html[lang="he"] .section-tag,
+html[lang="he"] .section-tag * {
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="he"] .nav-links a {
+  font-family: 'Heebo', sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="he"] .nav-cta,
+html[lang="he"] .btn-primary,
+html[lang="he"] .btn-outline,
+html[lang="he"] .finbot-cta,
+html[lang="he"] .mob-cta,
+html[lang="he"] .service-cta,
+html[lang="he"] .form-submit,
+html[lang="he"] .harry-modal-btn-primary,
+html[lang="he"] .harry-modal-btn-outline {
+  font-family: 'Heebo', sans-serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+html[lang="he"] .mob-menu a {
+  letter-spacing: 0;
+}
+
+/* ── RTL: badge margin flip ──────────────── */
+
+html[lang="he"] .nav-badge-ai {
+  margin-left: 0;
+  margin-right: 3px;
+}
+
+html[lang="he"] .nav-badge-ai-mob {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+/* ── RTL: lang-switcher margin flip ─────── */
+
+html[lang="he"] .lang-switcher {
+  margin-right: 0;
+  margin-left: 12px;
+}
+
+/* ── RTL: Telegram chat bubbles ──────────── */
+
+html[lang="he"] .finbot-msg-user {
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 3px;
+}
+
+html[lang="he"] .finbot-msg-bot {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 3px;
+}
+
+/* ── RTL: hero buttons align ─────────────── */
+
+html[lang="he"] .hero-btns {
+  justify-content: flex-start;
+}
+
+/* ── RTL: finbot step line ────────────────── */
+
+html[lang="he"] .finbot-steps::before {
+  left: auto;
+  right: 5%;
+  left: 5%;
+}
+
+/* ── RTL: about-list — remove dash pseudo-element ── */
+
+html[lang="he"] .about-list li {
+  padding-left: 0;
+}
+
+html[lang="he"] .about-list li::before {
+  display: none;
+}
+
+/* ── RTL: mob-close button ───────────────── */
+
+html[lang="he"] .mob-close {
+  right: auto;
+  left: 24px;
+}

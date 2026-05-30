@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useTranslation } from '../i18n/LanguageContext'
 
 const WEB3FORMS_KEY = '7a622343-6b0d-4c4c-88a1-f928d85dbd36'
 
@@ -25,17 +26,17 @@ const contactLinks = [
 
 const validateEmail = (v) => {
   const t = v.trim()
-  // Только латиница, цифры и email-символы — кириллица и другие алфавиты не пройдут
   return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(t)
 }
 
 const validatePhone = (v) => {
-  if (!v.trim()) return true // необязательное поле
+  if (!v.trim()) return true
   const digits = v.replace(/\D/g, '')
   return /^\+?[\d\s\-().]{7,20}$/.test(v.trim()) && digits.length >= 7 && digits.length <= 15
 }
 
 export default function Contact() {
+  const { t } = useTranslation()
   const [sent, setSent] = useState(false)
   const [loading, setLoading] = useState(false)
   const [form, setForm] = useState({ name: '', phone: '', email: '', msg: '' })
@@ -48,14 +49,14 @@ export default function Contact() {
 
   const submit = async () => {
     const newErrors = {}
-    if (!form.name.trim()) newErrors.name = 'Введите ваше имя'
+    if (!form.name.trim()) newErrors.name = t('contact.errName')
     if (!form.email.trim()) {
-      newErrors.email = 'Введите email'
+      newErrors.email = t('contact.errEmail')
     } else if (!validateEmail(form.email)) {
-      newErrors.email = 'Некорректный email — только латинские буквы, формат: name@domain.com'
+      newErrors.email = t('contact.errEmailInvalid')
     }
     if (!validatePhone(form.phone)) {
-      newErrors.phone = 'Некорректный номер (например: +7 999 123-45-67)'
+      newErrors.phone = t('contact.errPhone')
     }
     if (Object.keys(newErrors).length) {
       setErrors(newErrors)
@@ -80,10 +81,10 @@ export default function Contact() {
       if (data.success) {
         setSent(true)
       } else {
-        alert('Ошибка отправки. Попробуйте ещё раз.')
+        alert(t('contact.alertError'))
       }
     } catch {
-      alert('Нет соединения. Проверьте интернет и попробуйте снова.')
+      alert(t('contact.alertNetwork'))
     } finally {
       setLoading(false)
     }
@@ -92,17 +93,15 @@ export default function Contact() {
   return (
     <section className="contact" id="contact">
       <div className="section-inner">
-        <div className="section-tag">Контакты</div>
+        <div className="section-tag">{t('contact.tag')}</div>
         <h2 className="section-title contact-title">
-          Начнём<br /><em>вместе</em>
+          {t('contact.titleMain')}<br /><em>{t('contact.titleItalic')}</em>
         </h2>
 
         <div className="contact-grid">
           <div>
             <p className="contact-intro">
-              Готовы сделать первый шаг к финансовому порядку? Напишите мне —
-              первый звонок бесплатный. Мы с вами пообщаемся и определим
-              стратегию лично для вас.
+              {t('contact.intro')}
             </p>
 
             <div className="contact-links">
@@ -121,25 +120,25 @@ export default function Contact() {
           <div className="contact-form">
             {sent ? (
               <div className="success-msg">
-                <p>Спасибо! Ваша заявка получена.</p>
-                <p>Скоро свяжусь с вами, и вместе начнём наводить порядок в финансах 🤎</p>
+                <p>{t('contact.successP1')}</p>
+                <p>{t('contact.successP2')}</p>
               </div>
             ) : (
               <>
                 <div className="form-row">
                   <div className="form-field">
-                    <label>Имя</label>
+                    <label>{t('contact.nameLbl')}</label>
                     <input
                       type="text"
                       value={form.name}
                       onChange={set('name')}
-                      placeholder="Ваше имя"
+                      placeholder={t('contact.namePlaceholder')}
                       className={errors.name ? 'input-error' : ''}
                     />
                     {errors.name && <span className="field-error">{errors.name}</span>}
                   </div>
                   <div className="form-field">
-                    <label>Телефон</label>
+                    <label>{t('contact.phoneLbl')}</label>
                     <input
                       type="tel"
                       value={form.phone}
@@ -153,7 +152,7 @@ export default function Contact() {
 
                 <div className="form-row form-row-stretch">
                   <div className="form-field">
-                    <label>Email</label>
+                    <label>{t('contact.emailLbl')}</label>
                     <input
                       type="email"
                       value={form.email}
@@ -164,18 +163,18 @@ export default function Contact() {
                     {errors.email && <span className="field-error">{errors.email}</span>}
                   </div>
                   <div className="form-field">
-                    <label>Сообщение (необязательно)</label>
+                    <label>{t('contact.msgLbl')}</label>
                     <textarea
                       rows={2}
                       value={form.msg}
                       onChange={set('msg')}
-                      placeholder="Расскажите о своей ситуации..."
+                      placeholder={t('contact.msgPlaceholder')}
                     />
                   </div>
                 </div>
 
                 <button className="form-submit" onClick={submit} disabled={loading}>
-                  {loading ? 'Отправляем...' : 'Отправить запрос'}
+                  {loading ? t('contact.loading') : t('contact.submit')}
                 </button>
               </>
             )}

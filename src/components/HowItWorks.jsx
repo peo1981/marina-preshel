@@ -1,41 +1,18 @@
-const steps = [
-  {
-    num: '01',
-    title: 'Знакомство',
-    desc: 'Бесплатный вводный звонок. Знакомимся, обсуждаем вашу ситуацию и цели.',
-  },
-  {
-    num: '02',
-    title: 'Финансовый анализ',
-    desc: 'Вместе смотрим на доходы, расходы, долги и текущее положение дел.',
-  },
-  {
-    num: '03',
-    title: 'Создание системы',
-    desc: 'Разрабатываем персональную структуру бюджета под вашу жизнь.',
-  },
-  {
-    num: '04',
-    title: 'Поддержка',
-    desc: 'Регулярные встречи, вопросы и корректировки на каждом шагу.',
-  },
-  {
-    num: '05',
-    title: 'Прогресс и рост',
-    desc: 'Отслеживаем результаты. Вы растёте в уверенности и финансовой силе.',
-  },
-]
+import { useTranslation } from '../i18n/LanguageContext'
 
 export default function HowItWorks() {
+  const { t } = useTranslation()
+  const steps = t('howItWorks.steps')
+
   return (
     <section className="how" id="how">
       <div className="section-inner">
         <div className="how-header">
           <div className="section-tag" style={{ justifyContent: 'center' }}>
-            Как я работаю
+            {t('howItWorks.tag')}
           </div>
           <h2 className="section-title">
-            Простой путь к<br /><em>финансовому порядку</em>
+            {t('howItWorks.titleMain')}<br /><em>{t('howItWorks.titleItalic')}</em>
           </h2>
         </div>
 

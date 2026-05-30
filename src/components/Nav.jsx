@@ -1,24 +1,18 @@
 import { useState, useEffect } from 'react'
 import logo from '../assets/logo.png'
-
-const links = [
-  { id: 'about-me', label: 'Обо мне'    },
-  { id: 'about',    label: 'Мой метод' },
-  { id: 'services', label: 'Услуги'     },
-  { id: 'how',      label: 'Как работаю'},
-  { id: 'reviews',  label: 'Отзывы'    },
-  { id: 'finbot',   label: 'Гарри',     badge: true },
-  { id: 'contact',  label: 'Контакты'  },
-]
+import { useTranslation } from '../i18n/LanguageContext'
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
+  const { lang, setLang, t } = useTranslation()
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [open])
+
+  const links = t('nav.links')
 
   return (
     <>
@@ -29,17 +23,29 @@ export default function Nav() {
           </a>
 
           <ul className="nav-links">
-            {links.map(({ id, label, badge }) => (
+            {links.map(({ id, label }) => (
               <li key={id}>
                 <a href={`#${id}`}>
                   {label}
-                  {badge && <span className="nav-badge-ai">AI</span>}
+                  {id === 'finbot' && <span className="nav-badge-ai">AI</span>}
                 </a>
               </li>
             ))}
           </ul>
 
-          <a href="#contact" className="nav-cta">Записаться</a>
+          <div className="lang-switcher">
+            {['ru', 'en', 'he'].map(l => (
+              <button
+                key={l}
+                className={`lang-btn${lang === l ? ' active' : ''}`}
+                onClick={() => setLang(l)}
+              >
+                {l.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          <a href="#contact" className="nav-cta">{t('nav.cta')}</a>
 
           <div className="hamburger" onClick={() => setOpen(true)}>
             <span /><span /><span />
@@ -49,15 +55,26 @@ export default function Nav() {
 
       <div className={`mob-menu${open ? ' open' : ''}`}>
         <button className="mob-close" onClick={close}>✕</button>
-        {links.map(({ id, label, badge }) => (
+        {links.map(({ id, label }) => (
           <a key={id} href={`#${id}`} onClick={close}>
             {label}
-            {badge && <span className="nav-badge-ai-mob">AI</span>}
+            {id === 'finbot' && <span className="nav-badge-ai-mob">AI</span>}
           </a>
         ))}
         <a href="#contact" onClick={close} className="mob-cta">
-          Записаться
+          {t('nav.cta')}
         </a>
+        <div className="mob-lang">
+          {['ru', 'en', 'he'].map(l => (
+            <button
+              key={l}
+              className={`mob-lang-btn${lang === l ? ' active' : ''}`}
+              onClick={() => { setLang(l); close() }}
+            >
+              {l.toUpperCase()}
+            </button>
+          ))}
+        </div>
       </div>
     </>
   )

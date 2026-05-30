@@ -151,6 +151,10 @@
 }
 
 @media (max-width: 768px) {
-  .hero { padding: 80px 5% 40px; gap: 32px; }
-  .hero-img { height: 300px; }
+  .hero { padding: 110px 5% 40px; gap: 32px; }
+  .hero-title { font-size: 38px; white-space: normal; }
+  .hero-subtitle { font-size: 18px; }
+  .hero-text { height: auto; }
+  .hero-btns { margin-top: 24px; }
+  .hero-img { height: 280px; max-width: 280px; }
 }

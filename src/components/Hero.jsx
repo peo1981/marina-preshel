@@ -1,37 +1,36 @@
 import photo2 from '../assets/photo2.jpeg'
+import { useTranslation } from '../i18n/LanguageContext'
 
 export default function Hero() {
+  const { t } = useTranslation()
+
   return (
     <section className="hero-section" id="about-me">
       <div className="hero">
 
         <div className="hero-text">
-          <div className="hero-eyebrow fade-up d1">Обо мне</div>
+          <div className="hero-eyebrow fade-up d1">{t('hero.eyebrow')}</div>
           <h1 className="hero-title fade-up d2">
-            Марина Прешель
+            {t('hero.title')}
           </h1>
           <p className="hero-subtitle fade-up d3">
-            Финансовый консультант для семей и частных клиентов
+            {t('hero.subtitle')}
           </p>
           <div className="hero-creds fade-up d3">
-            <p className="hero-cred">Квалифицированный инвестор с высшим финансовым образованием.</p>
-            <p className="hero-cred">Опыт 15+ лет в финансах: банки, страхование, трейдинг, финтех и IT.</p>
-            <p className="hero-cred">Работа с 2мя финансовыми системами: РФ и Израиля.</p>
-            <p className="hero-cred">Практикующий инвестор в недвижимость и фондовый рынок с капиталом более $1 млн.</p>
-            <p className="hero-cred">Автор метода «Просто про Деньги».</p>
+            {t('hero.creds').map((cred, i) => (
+              <p className="hero-cred" key={i}>{cred}</p>
+            ))}
           </div>
 
           <p className="hero-desc fade-up d3">
-            Создаю понятную систему управления личными финансами: от семейного
-            бюджета и снижения финансового стресса до инвестиций и формирования
-            пассивного дохода.
+            {t('hero.desc')}
           </p>
           <div className="hero-btns fade-up d4">
             <a href="#contact" className="btn-primary">
-              Записаться на консультацию
+              {t('hero.btnPrimary')}
             </a>
             <a href="#services" className="btn-outline">
-              Мои услуги
+              {t('hero.btnOutline')}
             </a>
           </div>
         </div>

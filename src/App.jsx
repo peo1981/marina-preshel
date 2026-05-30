@@ -16,7 +16,9 @@ import './styles/HowItWorks.css'
 import './styles/Reviews.css'
 import './styles/Contact.css'
 import './styles/FinBot.css'
+import './styles/HarryModal.css'
 import './styles/Footer.css'
+import './styles/LangSwitcher.css'
 
 export default function App() {
   return (

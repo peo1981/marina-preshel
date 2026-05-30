@@ -121,5 +121,7 @@
 
 @media (max-width: 768px) {
   .about { padding: 60px 5%; }
-  .about-img { height: 380px; }
+  .about-img { height: 320px; }
+  .about-right { height: auto; }
+  .about-stats { margin-top: 24px; }
 }

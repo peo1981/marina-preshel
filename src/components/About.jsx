@@ -1,12 +1,9 @@
 import photo1 from '../assets/photo1.jpeg'
-
-const stats = [
-  { num: '15+', label: 'лет опыта'   },
-  { num: '100+', label: 'клиентов'    },
-  { num: '97%', label: 'рекомендуют' },
-]
+import { useTranslation } from '../i18n/LanguageContext'
 
 export default function About() {
+  const { t } = useTranslation()
+
   return (
     <section className="about" id="about">
       <div className="section-inner">
@@ -18,37 +15,25 @@ export default function About() {
 
           <div className="about-right">
             <div className="about-text">
-              <div className="section-tag">метод «Просто про Деньги»</div>
+              <div className="section-tag">{t('about.tag')}</div>
               <h2 className="section-title">
-                Мой метод<br /><em>работы</em>
+                {t('about.titleMain')}<br /><em>{t('about.titleItalic')}</em>
               </h2>
               <div className="divider" />
 
-              <p>
-                Финансовая система должна быть не сложной, а понятной, устойчивой
-                и применимой в реальной жизни — без жёстких ограничений, сложных
-                терминов и постоянного стресса из-за денег.
-              </p>
-              <p>
-                Мой метод объединяет две составляющие: <strong>твёрдую</strong> —
-                финансовую систему и порядок в деньгах, и <strong>мягкую</strong> —
-                финансовое поведение, привычки и мышление.
-              </p>
-              <p>В работе я помогаю шаг за шагом:</p>
+              <p>{t('about.p1')}</p>
+              <p dangerouslySetInnerHTML={{ __html: t('about.p2') }} />
+              <p>{t('about.p3')}</p>
               <ul className="about-list">
-                <li>навести порядок в личных финансах;</li>
-                <li>выстроить систему семейного бюджета;</li>
-                <li>создать подушку безопасности;</li>
-                <li>начать инвестировать и формировать капитал.</li>
+                {t('about.list').map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
               </ul>
-              <p>
-                Моя цель — помочь вам выстроить спокойные отношения с деньгами
-                и систему, которая будет работать на вас долгие годы.
-              </p>
+              <p>{t('about.p4')}</p>
             </div>
 
             <div className="about-stats">
-              {stats.map(({ num, label }) => (
+              {t('about.stats').map(({ num, label }) => (
                 <div className="stat-item" key={label}>
                   <div className="stat-num">{num}</div>
                   <div className="stat-label">{label}</div>

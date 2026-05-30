@@ -1,6 +1,9 @@
 import logo from '../assets/logo-footer.png'
+import { useTranslation } from '../i18n/LanguageContext'
 
 export default function Footer() {
+  const { t } = useTranslation()
+
   return (
     <footer>
       <div className="footer-inner">
@@ -9,7 +12,7 @@ export default function Footer() {
         </a>
 
         <div className="footer-copy">
-          © 2025 Marina Preshel. Все права защищены.
+          {t('footer.copy')}
         </div>
       </div>
     </footer>
